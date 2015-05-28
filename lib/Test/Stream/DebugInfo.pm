@@ -7,7 +7,7 @@ use Test::Stream::Util qw/get_tid USE_THREADS/;
 use Carp qw/confess/;
 
 use Test::Stream::HashBase(
-    accessors => [qw/frame todo skip detail pid tid/],
+    accessors => [qw/frame todo skip detail pid tid parent_todo/],
 );
 
 sub init {
@@ -49,7 +49,8 @@ sub subname { $_[0]->{+FRAME}->[3] }
 sub no_fail {
     my $self = shift;
     return defined($self->{+TODO})
-        || defined($self->{+SKIP});
+        || defined($self->{+SKIP})
+        || defined($self->{+PARENT_TODO});
 }
 
 1;

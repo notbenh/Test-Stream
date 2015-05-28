@@ -13,7 +13,7 @@ use Test::Stream::HashBase(
         pid tid hid ipc
         state
         no_ending
-        _todo _meta
+        _todo _meta parent_todo
         _mungers
         _listeners
         _follow_ups

@@ -46,6 +46,8 @@ sub _subtest {
     $hub->listen(sub { push @events => $_[1] });
     $hub->format(undef) if $buffered;
 
+    $hub->set_parent_todo($ctx->debug->todo);
+
     my ($ok, $err, $finished);
     PUSH_HUB($hub);
     TS_SUBTEST_WRAPPER: {

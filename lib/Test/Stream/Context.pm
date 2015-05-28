@@ -301,10 +301,11 @@ Removing the old context and creating a new one...
 
     my $dbg = bless(
         {
-            frame => [$pkg, $file, $line, $sub],
-            todo  => $hub->get_todo,
-            pid   => $$,
-            tid   => get_tid(),
+            frame       => [$pkg, $file, $line, $sub],
+            todo        => $hub->get_todo,
+            parent_todo => $hub->parent_todo,
+            pid         => $$,
+            tid         => get_tid(),
         },
         'Test::Stream::DebugInfo'
     );
