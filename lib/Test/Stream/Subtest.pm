@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use Test::Stream::Subtest::Hub;
-use Test::Stream::Context qw/context TOP_HUB PUSH_HUB POP_HUB NEW_HUB/;
+use Test::Stream::Context qw/context PUSH_HUB POP_HUB NEW_HUB/;
 
 use Test::Stream::Event::Subtest;
 
@@ -36,7 +36,7 @@ sub _subtest {
 
     $ctx->note("Subtest: $name") unless $buffered;
 
-    my $parent = TOP_HUB();
+    my $parent = $ctx->hub;
 
     my $hub = NEW_HUB();
     bless($hub, 'Test::Stream::Subtest::Hub');
