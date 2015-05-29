@@ -247,7 +247,7 @@ sub context {
     croak "context() called, but return value is ignored"
         unless defined wantarray;
 
-    my $hub = TOP_HUB();
+    my $hub = $params{hub} || TOP_HUB();
     my $hid = $hub->{hid};
     my $current = $CONTEXTS{$hid};
 
@@ -565,6 +565,13 @@ You almost never need this. This is only useful if you are calling C<context>
 outside of a subroutine, or calling it nested within subroutines that do not
 also obtain the context. Usually it is best to call context first thing in
 whatever sub is your entry point.
+
+=item hub => $hub
+
+If you specify the C<hub> option then you will get the context for the
+specified hub instead of whatever hub is at the top of the stack. This is
+primarily useful for tools that create an independant hub that is on a seperate
+stack, or no stakc at all.
 
 =item on_init => sub { my $ctx = shift; ... }
 
